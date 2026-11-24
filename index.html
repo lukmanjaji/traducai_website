@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TraducAI · Live interpretation for every room</title>
+<meta name="description" content="TraducAI interprets your speakers live, in voice and captions, straight to every listener's phone. No booths, no headsets, no app: scan a QR code and pick a language. 60 languages.">
+<meta name="theme-color" content="#5a4bc6">
+<meta property="og:title" content="TraducAI · Live interpretations">
+<meta property="og:description" content="Every voice in the room, in every listener's language. Live voice and captions on their own phone.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="tm-g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#8a7cf2"/><stop offset="1" stop-color="#4b3cb5"/></linearGradient>
+    <symbol id="mark" viewBox="0 0 48 38">
+      <rect x="5" y="5" width="32" height="24" rx="1.5" fill="none" stroke="url(#tm-g)" stroke-width="3"/>
+      <g fill="#fff" stroke="#5a4bc6" stroke-width="2"><rect x="1.5" y="1.5" width="7" height="7" rx="1"/><rect x="33.5" y="1.5" width="7" height="7" rx="1"/><rect x="1.5" y="25.5" width="7" height="7" rx="1"/><rect x="33.5" y="25.5" width="7" height="7" rx="1"/></g>
+      <path d="M12 17c2-4 4-4 6 0s4 4 6 0 4-4 6 0" fill="none" stroke="#ff7d8f" stroke-width="2.4" stroke-linecap="round"/>
+      <path d="M33 22l11 5-5 1.6L37 34z" fill="url(#tm-g)" stroke="#fff" stroke-width="1.6" stroke-linejoin="round"/>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="nav" id="top">
+  <div class="nav-inner">
+    <a class="brand" href="#top" aria-label="TraducAI home">
+      <svg class="mark"><use href="#mark"/></svg>
+      <span class="word">Traduc<b>AI</b><span class="rider">Live interpretations</span></span>
+    </a>
+    <nav class="links" aria-label="Sections">
+      <a href="#how">How it works</a>
+      <a href="#features">Features</a>
+      <a href="#meeting-rooms">Meeting rooms</a>
+      <a href="#headsets">Headsets</a>
+      <a href="#languages">Languages</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <div class="nav-cta">
+      <a class="btn ghost" href="https://app.traduc.ai/login" target="_blank" rel="noopener">Log in</a>
+      <a class="btn primary" href="https://app.traduc.ai/signup" target="_blank" rel="noopener">Get started</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ============ hero ============ -->
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow">Live interpretation for conferences and events</span>
+    <h1>Every voice in the room, in <span class="sel">every<i></i><i></i><i></i><i></i></span> listener's language.</h1>
+    <p class="lede">TraducAI listens to your speakers and interprets them live, in voice and captions, straight to each person's phone. No booths, no headsets to hand out, no app to install. People scan a QR code and pick their language.</p>
+    <div class="hero-cta">
+      <a class="btn primary big" href="https://app.traduc.ai/signup" target="_blank" rel="noopener">Create your first room</a>
+      <a class="btn ghost big" href="#how">See how it works</a>
+    </div>
+    <ul class="ticks">
+      <li>60 languages, 29 with spoken voice</li>
+      <li>About 3 seconds behind the speaker</li>
+      <li>In the speaker's own voice</li>
+    </ul>
+  </div>
+
+  <div class="hero-stage" aria-label="A listener's phone showing live captions in the chosen language">
+    <div class="stage-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="phone">
+      <div class="notch"></div>
+      <div class="screen">
+        <div class="ph-top">
+          <svg class="mark sm"><use href="#mark"/></svg>
+          <span class="ph-pill"><b></b><span id="ph-lang">French</span></span>
+        </div>
+        <div class="ph-room">Plenary hall</div>
+        <div class="ph-cap done">
+          <div class="who">Speaker 1</div>
+          <div class="src">Thank you for joining us this morning.</div>
+          <div class="tr" id="ph-prev">Merci de nous avoir rejoints ce matin.</div>
+        </div>
+        <div class="ph-cap live">
+          <div class="who">Speaker 1</div>
+          <div class="src">Welcome, everyone. Let's begin with the results from Nairobi.</div>
+          <div class="tr" id="ph-now"></div>
+        </div>
+        <div class="ph-bar"><span>Captions</span><span class="on">Voice</span><span>Language</span></div>
+      </div>
+    </div>
+    <svg class="cursor" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 2l16 8-7 2.2L10 20z"/></svg>
+    <div class="chip c1"><span class="dot ok"></span>Live: speaker's own voice</div>
+    <div class="chip c2"><span class="wave"><i></i><i></i><i></i><i></i></span>3.1 s behind</div>
+    <div class="chip c3"><span class="qr" aria-hidden="true"></span>Scan, pick, listen</div>
+  </div>
+</section>
+
+<!-- ============ strip ============ -->
+<section class="strip" aria-label="TraducAI at a glance">
+  <div><b>60</b><span>languages</span></div>
+  <div><b>29</b><span>with spoken voice</span></div>
+  <div><b>~3 s</b><span>behind the speaker</span></div>
+  <div><b>0</b><span>apps to install</span></div>
+</section>
+
+<!-- ============ how ============ -->
+<section class="section" id="how">
+  <div class="head">
+    <span class="eyebrow">How it works</span>
+    <h2>Three steps, and the room speaks every language.</h2>
+  </div>
+  <ol class="steps">
+    <li class="card reveal">
+      <span class="num">1</span>
+      <div class="art art-mic" aria-hidden="true">
+        <svg viewBox="0 0 120 80"><rect x="48" y="10" width="24" height="38" rx="12"/><path d="M38 38a22 22 0 0 0 44 0M60 60v12M46 72h28"/>
+          <g class="rings"><circle cx="60" cy="30" r="30"/><circle cx="60" cy="30" r="42"/></g></svg>
+      </div>
+      <h3>Connect the room's sound</h3>
+      <p>Plug the TraducAI box into the sound desk, or open the microphone page on a laptop in Chrome. Share your slides too, so names and numbers come out right.</p>
+    </li>
+    <li class="card reveal">
+      <span class="num">2</span>
+      <div class="art art-qr" aria-hidden="true">
+        <div class="qr big"></div><div class="scanline"></div>
+      </div>
+      <h3>People scan the QR code</h3>
+      <p>Put the room's QR code on the screen, the badge or the table. Listeners open it in their phone's browser and choose their language. A PIN keeps private rooms private.</p>
+    </li>
+    <li class="card reveal">
+      <span class="num">3</span>
+      <div class="art art-ear" aria-hidden="true">
+        <div class="bubble b1">Bienvenue à tous.</div>
+        <div class="bubble b2">Karibuni nyote.</div>
+        <div class="bubble b3" dir="rtl">مرحبًا بالجميع.</div>
+      </div>
+      <h3>Everyone hears their language</h3>
+      <p>With their own earphones they hear the speaker, in the speaker's own voice, a few seconds behind, with captions of the original and the translation.</p>
+    </li>
+  </ol>
+
+  <div class="flow card reveal" aria-label="How sound travels">
+    <div class="node"><svg class="ico" viewBox="0 0 24 24"><path d="M12 3a3 3 0 0 0-3 3v6a3 3 0 0 0 6 0V6a3 3 0 0 0-3-3zM5 11a7 7 0 0 0 14 0M12 18v3"/></svg><b>Room microphone</b><small>TraducAI box or laptop</small></div>
+    <div class="pipe"><i></i></div>
+    <div class="node hub"><svg class="mark"><use href="#mark"/></svg><b>TraducAI</b><small>one live session per language in use</small></div>
+    <div class="pipe"><i></i></div>
+    <div class="node"><svg class="ico" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M11 18h2"/></svg><b>Every phone</b><small>voice + captions, own language</small></div>
+  </div>
+</section>
+
+<!-- ============ features ============ -->
+<section class="section" id="features">
+  <div class="head">
+    <span class="eyebrow">Features</span>
+    <h2>Built for the people on stage, in the seats and at the sound desk.</h2>
+  </div>
+  <div class="grid">
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12c3-6 5-6 7 0s4 6 7 0M14 5h7M14 19h7"/></svg><h3>The speaker's own voice</h3>
+      <p>Each translation is spoken in a voice cloned from the speaker as they talk, not a robotic narrator. When the room sound is too poor to clone well, it switches to a natural standard voice by itself.</p></article>
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H9l-5 4zM8 9h8M8 12h5"/></svg><h3>Captions for everyone</h3>
+      <p>The original and the translation, sentence by sentence, with a colour for each speaker. Good for noisy rooms, people who are hard of hearing, and the 31 languages offered as captions.</p></article>
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v12H3zM9 20h6M12 16v4"/></svg><h3>Projector captions</h3>
+      <p>A full-screen caption view for the big screen: up to four languages side by side, large text, and a QR code so the room can switch to phones.</p></article>
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z"/></svg><h3>Your human interpreters too</h3>
+      <p>Interpreters work from a browser booth: they hear the floor, see the AI captions, and press Go on air. Their voice replaces the AI voice for that language until they hand back.</p></article>
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h18v13H3zM8 21l4-4 4 4M7 9h6M7 12h10"/></svg><h3>Slides as context</h3>
+      <p>Share the presentation from the microphone page. TraducAI reads each new slide so names, acronyms and figures are interpreted correctly.</p></article>
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 19 8 5l5 14M5 14h6M15 13a3 3 0 1 1 3 3h-3v-6"/></svg><h3>Glossary per room</h3>
+      <p>Add up to 1,000 terms: organisation names, programme titles, technical words. You can edit it live while the session runs.</p></article>
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h10l4 4v14H5zM9 11h6M9 15h6M9 7h3"/></svg><h3>Transcripts and minutes</h3>
+      <p>Download each day's transcript per language. One click writes minutes in the language you choose: summary, key points, decisions, action items and open questions.</p></article>
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 7v5l3 2"/></svg><h3>Opening times</h3>
+      <p>Set when each room is open. Outside those times listeners see when it opens next and everything switches off, so nothing runs overnight.</p></article>
+    <article class="card feat reveal"><svg class="fi" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3l8 9-8 9-8-9zM12 8v8M9 12h6"/></svg><h3>Pay for what is heard</h3>
+      <p>A language only runs while someone is listening to it, and stops a minute after the last listener leaves. Silence is not charged.</p></article>
+  </div>
+</section>
+
+<!-- ============ organisers ============ -->
+<section class="section split" id="organisers">
+  <div class="split-copy reveal">
+    <span class="eyebrow">For organisers</span>
+    <h2>One dashboard for every room.</h2>
+    <p>See who is listening, in which language, how far behind the speaker it runs and what it costs, live. Create rooms, print their QR codes, set PINs and opening times, and invite interpreters, all from the browser.</p>
+    <ul class="ticks">
+      <li>Up to 10 rooms per account</li>
+      <li>A microphone key per room, renewable at any time</li>
+      <li>Team accounts for companies and organisations</li>
+    </ul>
+    <a class="btn primary" href="https://app.traduc.ai/signup" target="_blank" rel="noopener">Open an account</a>
+  </div>
+  <div class="mock reveal" aria-label="Illustration of the organiser dashboard">
+    <div class="mock-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="mock-win">
+      <div class="mock-bar"><span></span><span></span><span></span><em>app.traduc.ai/account</em></div>
+      <div class="mock-body">
+        <div class="kpis">
+          <div class="kpi main"><small>Listeners now</small><b id="k-listeners">148</b><em>across 5 languages</em></div>
+          <div class="kpi"><small>Microphones on</small><b>2</b><em>of 3 rooms</em></div>
+          <div class="kpi"><small>Delay</small><b>3.2 s</b><em>average</em></div>
+        </div>
+        <div class="mock-panel">
+          <div class="mp-head"><b>Listeners by language</b><small>Plenary hall</small></div>
+          <ul class="hbars">
+            <li><span>French</span><span class="track"><i style="--w:100%"></i></span><b>62</b></li>
+            <li><span>Portuguese</span><span class="track"><i style="--w:56%"></i></span><b>35</b></li>
+            <li><span>Arabic</span><span class="track"><i style="--w:40%"></i></span><b>25</b></li>
+            <li><span>Swahili</span><span class="track"><i style="--w:27%"></i></span><b>17</b></li>
+            <li><span>Spanish</span><span class="track"><i style="--w:15%"></i></span><b>9</b></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ meeting rooms (Table Hub) ============ -->
+<section class="section split flip" id="meeting-rooms">
+  <div class="mock hub-stage reveal" aria-label="Illustration of the TraducAI Table Hub on a meeting table">
+    <div class="mock-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <svg class="hub-art" viewBox="0 0 560 400" role="img" aria-label="The Table Hub: a round unit with a microphone ring, a tilted touchscreen and speakers all around">
+      <defs>
+        <linearGradient id="hb-body" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a3170"/><stop offset="1" stop-color="#1d1745"/></linearGradient>
+        <linearGradient id="hb-scr" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c6ef0"/><stop offset="1" stop-color="#4b3cb5"/></linearGradient>
+      </defs>
+      <ellipse class="hb-table" cx="280" cy="318" rx="250" ry="58"/>
+      <ellipse cx="280" cy="300" rx="150" ry="26" fill="#000" opacity=".12"/>
+      <!-- body -->
+      <path d="M140 230 L140 288 A140 30 0 0 0 420 288 L420 230 Z" fill="url(#hb-body)"/>
+      <g class="hb-grille" fill="#a99ff0" opacity=".55">
+        <circle cx="175" cy="268" r="3"/><circle cx="191" cy="272" r="3"/><circle cx="207" cy="275" r="3"/><circle cx="223" cy="277" r="3"/>
+        <circle cx="337" cy="277" r="3"/><circle cx="353" cy="275" r="3"/><circle cx="369" cy="272" r="3"/><circle cx="385" cy="268" r="3"/>
+        <circle cx="183" cy="283" r="3"/><circle cx="199" cy="286" r="3"/><circle cx="215" cy="288" r="3"/>
+        <circle cx="345" cy="288" r="3"/><circle cx="361" cy="286" r="3"/><circle cx="377" cy="283" r="3"/>
+      </g>
+      <ellipse cx="280" cy="230" rx="140" ry="30" fill="#2b2459"/>
+      <!-- mic ring -->
+      <ellipse cx="280" cy="230" rx="124" ry="25" fill="none" stroke="#a99ff0" stroke-width="2" stroke-dasharray="2 10" class="hb-ring"/>
+      <!-- screen -->
+      <path d="M200 228 L222 120 L338 120 L360 228 Z" fill="#14112c"/>
+      <path d="M208 222 L227 128 L333 128 L352 222 Z" fill="url(#hb-scr)"/>
+      <text x="280" y="152" text-anchor="middle" fill="#fff" font-size="11" font-weight="700" font-family="Inter, sans-serif">Board room</text>
+      <rect x="244" y="161" width="72" height="16" rx="8" fill="#fff" opacity=".9"/>
+      <text x="280" y="173" text-anchor="middle" fill="#4b3cb5" font-size="9.5" font-weight="700" font-family="Inter, sans-serif">Français</text>
+      <rect x="232" y="186" width="96" height="5" rx="2.5" fill="#fff" opacity=".55"/>
+      <rect x="226" y="197" width="108" height="5" rx="2.5" fill="#fff" opacity=".85"/>
+      <rect x="222" y="208" width="80" height="5" rx="2.5" fill="#fff" opacity=".85"/>
+      <!-- mute key, volume dial -->
+      <circle cx="176" cy="236" r="9" fill="#ff7d8f"/>
+      <ellipse cx="384" cy="236" rx="13" ry="7" fill="#3a3170" stroke="#a99ff0" stroke-width="1.5"/>
+      <!-- sound waves -->
+      <g class="hb-wave" fill="none" stroke="var(--accent-2)" stroke-width="2.5" stroke-linecap="round">
+        <path d="M118 262 q-14 14 0 28"/><path d="M100 252 q-24 24 0 48"/>
+        <path d="M442 262 q14 14 0 28"/><path d="M460 252 q24 24 0 48"/>
+      </g>
+      <!-- labels -->
+      <g class="hb-label" font-family="Inter, sans-serif" font-size="12.5" font-weight="600">
+        <line x1="222" y1="124" x2="150" y2="70"/><text x="40" y="66">Tilted touchscreen</text>
+        <line x1="380" y1="226" x2="470" y2="150"/><text x="414" y="142">Microphone ring</text>
+        <line x1="176" y1="236" x2="80" y2="200"/><text x="22" y="196">Mute key</text>
+        <line x1="392" y1="238" x2="480" y2="214"/><text x="452" y="206">Volume</text>
+        <line x1="207" y1="276" x2="150" y2="368"/><text x="70" y="384">Speakers all around</text>
+      </g>
+    </svg>
+  </div>
+  <div class="split-copy reveal">
+    <span class="eyebrow">For board and meeting rooms</span>
+    <h2>One device in the middle of the table.</h2>
+    <p>The TraducAI Table Hub is made for rooms where everyone talks. Its ring of microphones picks up whoever is speaking, and its speakers play the interpretation back to the table. Each person picks a language on the touchscreen, and anyone can still follow on their own phone by scanning the QR code.</p>
+    <ul class="ticks">
+      <li>No laptop, mixer or wiring: plug it in and pair it with a code</li>
+      <li>Microphone ring for a whole table, with a mute key</li>
+      <li>Live captions on the touchscreen and on every phone</li>
+      <li>Glossary, transcript and minutes, like any TraducAI room</li>
+    </ul>
+    <span class="soon">In development</span>
+    <a class="btn primary" href="mailto:hello@zshift.io?subject=TraducAI%20Table%20Hub">Register your interest</a>
+  </div>
+</section>
+
+<!-- ============ existing headset systems ============ -->
+<section class="section split" id="headsets">
+  <div class="split-copy reveal">
+    <span class="eyebrow">For venues with interpretation systems</span>
+    <h2>Works with the headsets you already have.</h2>
+    <p>Many venues own an infrared or radio interpretation system, with a receiver and headset for every seat. TraducAI plugs into it the way an interpreter booth does: each language comes out of its own sound output at the sound desk and goes into its own channel of the transmitter. People turn to their channel, and anyone can still use their phone.</p>
+    <ul class="ticks">
+      <li>Infrared, radio and tour-guide systems</li>
+      <li>One cable per language, two languages per stereo output</li>
+      <li>Test beeps to find each channel on a receiver</li>
+      <li>Runs in Chrome or Edge, nothing to install</li>
+    </ul>
+    <a class="btn primary" href="https://app.traduc.ai/signup" target="_blank" rel="noopener">Set up your channels</a>
+  </div>
+  <div class="mock hs reveal" aria-label="Illustration of the Headset channels screen feeding an interpretation transmitter">
+    <div class="mock-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <div class="mock-win">
+      <div class="mock-bar"><span></span><span></span><span></span><em>Headset channels</em></div>
+      <div class="mock-body">
+        <ul class="hs-rows">
+          <li><b class="n">1</b><span class="l">French</span><span class="o">Output 1 · left</span><span class="lv"><i style="--d:0s"></i></span><span class="st">Live</span></li>
+          <li><b class="n">2</b><span class="l">Arabic</span><span class="o">Output 1 · right</span><span class="lv"><i style="--d:.4s"></i></span><span class="st">Live</span></li>
+          <li><b class="n">3</b><span class="l">Portuguese</span><span class="o">Output 2 · left</span><span class="lv"><i style="--d:.8s"></i></span><span class="st">Live</span></li>
+          <li><b class="n">4</b><span class="l">Spanish</span><span class="o">Output 2 · right</span><span class="lv"><i style="--d:1.2s"></i></span><span class="st">Live</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="hs-chain" aria-hidden="true">
+      <div class="hs-node"><svg viewBox="0 0 24 24"><path d="M4 7h16v10H4zM8 11h.01M12 11h.01M16 11h.01M7 17v3M17 17v3"/></svg><span>Audio interface</span></div>
+      <i class="hs-wire"></i>
+      <div class="hs-node"><svg viewBox="0 0 24 24"><path d="M3 9h18v9H3zM7 13h4M15 13h2M12 9 8 4M12 9l4-5"/></svg><span>Transmitter, channels 1 to 4</span></div>
+      <i class="hs-wire"></i>
+      <div class="hs-node"><svg viewBox="0 0 24 24"><path d="M4 14v-2a8 8 0 0 1 16 0v2M4 14h3v6H4zM17 14h3v6h-3z"/></svg><span>Receivers and headsets</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ languages ============ -->
+<section class="section" id="languages">
+  <div class="head">
+    <span class="eyebrow">Languages</span>
+    <h2>60 languages. 29 of them spoken aloud.</h2>
+    <p class="sub">Every language gets live captions. Languages marked <span class="lg voice demo">voice</span> are also spoken into the listener's earphones.</p>
+  </div>
+  <div class="lang-tools">
+    <input type="search" id="lang-q" placeholder="Find a language" aria-label="Find a language">
+    <div class="seg" role="group" aria-label="Show">
+      <button class="on" data-f="all" aria-pressed="true">All</button>
+      <button data-f="voice" aria-pressed="false">Voice</button>
+      <button data-f="captions" aria-pressed="false">Captions only</button>
+    </div>
+  </div>
+  <ul class="langs" id="langs" aria-live="polite"></ul>
+  <p class="none" id="lang-none" hidden>Not in the list yet. Tell us which language you need.</p>
+</section>
+
+<!-- ============ uses ============ -->
+<section class="section" id="uses">
+  <div class="head">
+    <span class="eyebrow">Where it's used</span>
+    <h2>Any room where not everyone shares a language.</h2>
+  </div>
+  <div class="uses">
+    <div class="use reveal"><b>Conferences and summits</b><p>Plenaries and parallel sessions, each room with its own QR code and languages.</p></div>
+    <div class="use reveal"><b>Workshops and trainings</b><p>Multi-country programmes where every participant should follow every word.</p></div>
+    <div class="use reveal"><b>Faith and community gatherings</b><p>Services and meetings for congregations and communities that span languages.</p></div>
+    <div class="use reveal"><b>Board and partner meetings</b><p>Smaller rooms with a glossary of your own terms and minutes at the end.</p></div>
+  </div>
+</section>
+
+<!-- ============ faq ============ -->
+<section class="section narrow" id="faq">
+  <div class="head">
+    <span class="eyebrow">Questions</span>
+    <h2>Good to know.</h2>
+  </div>
+  <div class="faq">
+    <details><summary>Do listeners need to install an app?</summary>
+      <p>No. They scan the QR code, the page opens in their phone's browser, and they choose a language. Earphones are all they need. Keeping the screen on keeps the sound going.</p></details>
+    <details><summary>Can we use the interpretation headsets we already have?</summary>
+      <p>Yes. TraducAI can send each language to its own channel of an infrared, radio or tour-guide interpretation system. A computer at the sound desk plays each language on its own sound output, cabled into the transmitter where an interpreter booth would go. Receivers and phones work side by side.</p></details>
+    <details><summary>How far behind the speaker is it?</summary>
+      <p>About three seconds, measured in real sessions. Most of that is the time the model needs to hear enough of a sentence to translate it well.</p></details>
+    <details><summary>What do we need in the room?</summary>
+      <p>An internet connection and a feed of the room's sound: either the TraducAI box connected to the sound desk, or a laptop with Chrome on the microphone page.</p></details>
+    <details><summary>Can our own interpreters work with it?</summary>
+      <p>Yes. Send an interpreter a booth link. They hear the floor, see the AI captions, and go on air for their language whenever they want; their voice replaces the AI voice until they hand back.</p></details>
+    <details><summary>How accurate is it?</summary>
+      <p>Very good for clear speech, and better with a room glossary and shared slides. It is still machine interpretation: for negotiations, legal or medical sessions, put a human interpreter on air for the languages that matter most.</p></details>
+    <details><summary>Who can get into a room?</summary>
+      <p>Anyone with the link, unless you set a PIN; the QR code you print already includes it. Rooms are created only by approved accounts, and each has its own microphone key.</p></details>
+    <details><summary>What happens to the transcripts?</summary>
+      <p>Captions are saved as daily text transcripts per language, which the room owner can download or turn into minutes. Minutes are written by AI, so read them before you share them.</p></details>
+  </div>
+</section>
+
+<!-- ============ cta ============ -->
+<section class="cta">
+  <div class="cta-inner">
+    <div class="cta-frame" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <h2>Make your next event multilingual.</h2>
+    <p>Open an account and get your first room straight away. We approve new accounts before rooms go live.</p>
+    <div class="hero-cta">
+      <a class="btn light big" href="https://app.traduc.ai/signup" target="_blank" rel="noopener">Get started</a>
+      <a class="btn outline big" href="mailto:hello@zshift.io?subject=TraducAI">Talk to us</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="foot-inner">
+    <div>
+      <a class="brand" href="#top"><svg class="mark"><use href="#mark"/></svg><span class="word">Traduc<b>AI</b><span class="rider">Live interpretations</span></span></a>
+      <p class="muted">TraducAI is a product of ZSHIFT.</p>
+    </div>
+    <nav aria-label="Footer">
+      <a href="https://app.traduc.ai/signup" target="_blank" rel="noopener">Create an account</a>
+      <a href="https://app.traduc.ai/login" target="_blank" rel="noopener">Log in</a>
+      <a href="#faq">FAQ</a>
+      <a href="mailto:hello@zshift.io?subject=TraducAI">hello@zshift.io</a>
+    </nav>
+  </div>
+  <div class="foot-base">© <span id="yr">2026</span> ZSHIFT Limited</div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
