@@ -404,3 +404,11 @@ main { overflow: clip; }
 .pass .btn { flex: none; }
 @media (max-width: 1000px) { .plans { grid-template-columns: repeat(2, 1fr); } .pass { flex-direction: column; align-items: flex-start; } }
 @media (max-width: 720px) { .plans { grid-template-columns: 1fr; } .pass { padding: 22px; } .pass .btn { width: 100%; } }
+.currency { display: flex; align-items: center; flex-wrap: wrap; gap: 10px; margin: -8px 0 22px; font-size: 14px; }
+.currency label { font-weight: 600; }
+.currency select { font: inherit; padding: 6px 10px; border-radius: 10px; border: 1px solid var(--line); background: var(--card); color: var(--text); }
+.currency .muted { color: var(--muted); }
+.plan .usd-ref { color: var(--muted); font-size: 13px; min-height: 18px; margin-bottom: 2px; }
+.plan .usd-ref:empty { min-height: 0; }
+.plan .price { flex-wrap: wrap; row-gap: 0; }
+.plan .price b.local { font-size: clamp(26px, 2.4vw, 32px); white-space: nowrap; }
