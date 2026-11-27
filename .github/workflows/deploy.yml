@@ -21,3 +21,5 @@ jobs:
         cd /tmp
         git clone --depth 1 --branch "${GITHUB_REF_NAME:-main}" \
           "https://github.com/$GITHUB_REPOSITORY.git" "$WORK"
+    - name: Copy site files
+      run: cp -r /home/traduc/_work/traduc/traduc/*.* /home/traduc_website/
