@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-    - name: Clean existing workspace
+    - name: Clean existing workspace 
       run: |
         rm -rf "$WORK"
         mkdir -p "$(dirname "$WORK")"
