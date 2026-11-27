@@ -19,6 +19,5 @@ jobs:
         # phantom-dir state where every subsequent command fails
         # with "Unable to read current working directory".
         cd /tmp
-        rm -rf "$WORK"
         git clone --depth 1 --branch "${GITHUB_REF_NAME:-main}" \
           "https://github.com/$GITHUB_REPOSITORY.git" "$WORK"
