@@ -9,18 +9,14 @@ jobs:
   build:
     runs-on: self-hosted
     steps:
-    - name: Clean existing workspace 
-      run: |
-        rm -rf "$WORK"
-        mkdir -p "$(dirname "$WORK")" 
-    - name: Clone repository
+    - name: Check out
+      uses: actions/checkout@v4
+      with:
+        clean: true
+
+    # Only the site's own files go to the web root (not README.md or .github).
+    - name: Copy site files
       run: |
         set -e
-        WORK="$GITHUB_WORKSPACE"
-        # cd out of $WORK before deleting it — the runner cd'd into
-        # this directory before running the script, and `rm -rf` on
-        # the current working directory leaves the shell in a
-        # phantom-dir state where every subsequent command fails
-        # with "Unable to read current working directory".
-        git clone --depth 1 --branch "${GITHUB_REF_NAME:-main}" \
-          "https://github.com/$GITHUB_REPOSITORY.git" "$WORK"
+        cp index.html styles.css script.js favicon.svg /home/traduc_website/
+        ls -l /home/traduc_website
