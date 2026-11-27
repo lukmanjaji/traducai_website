@@ -12,7 +12,7 @@ jobs:
     - name: Clean existing workspace 
       run: |
         rm -rf "$WORK"
-        mkdir -p "$(dirname "$WORK")"
+        mkdir -p "$(dirname "$WORK")" 
     - name: Clone repository
       run: |
         set -e
