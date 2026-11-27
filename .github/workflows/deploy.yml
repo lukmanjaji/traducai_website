@@ -22,7 +22,6 @@ jobs:
         # the current working directory leaves the shell in a
         # phantom-dir state where every subsequent command fails
         # with "Unable to read current working directory".
-        cd /tmp
         git clone --depth 1 --branch "${GITHUB_REF_NAME:-main}" \
           "https://github.com/$GITHUB_REPOSITORY.git" "$WORK"
     - name: Copy site files
