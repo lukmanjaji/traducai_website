@@ -1,50 +1,24 @@
-# Deploy the TraducAI website (traduc.ai) on the VPS.
-#
-# Plain static files, no build: the job clones the repo and copies the site into DEPLOY_DIR, which nginx serves.
-#
-# One-time setup on the server:
-#   - register a self-hosted runner for THIS repository (Settings > Actions > Runners > New self-hosted runner),
-#     in its own folder, e.g. /home/actions-runner-traduc-website, and install it as a service
-#   - rsync (apt install -y rsync)
-#   - the nginx site for traduc.ai (see README.md) and its certificate (certbot)
-name: Deploy website
+name: Deploy static content
 
 on:
   push:
-    branches: [ "main" ]
-  # "Run workflow" button, to redeploy without a code change.
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
-  deploy:
+  build:
     runs-on: self-hosted
-
-    env:
-      DEPLOY_DIR: /home/traduc   # web root for traduc.ai (nginx serves this folder)
-
     steps:
-      # Same approach as traducai_ui: clone with plain git (the token is passed via env and scrubbed afterwards).
-      - name: Clone repository
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          set -e
-          WORK="$GITHUB_WORKSPACE"
-          cd /tmp
-          rm -rf "$WORK"
-          git clone --depth 1 --branch "${GITHUB_REF_NAME:-main}" \
-            "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" "$WORK"
-          cd "$WORK"
-          git remote set-url origin "https://github.com/${GITHUB_REPOSITORY}.git"
-          test -f index.html || { echo "::error::index.html is missing"; exit 1; }
-
-      - name: Deploy to web root
-        run: |
-          set -e
-          mkdir -p "$DEPLOY_DIR"
-          # Only the site's files; --delete removes files that left the repo. A runner kept in DEPLOY_DIR is left alone.
-          rsync -a --delete \
-            --exclude='.git/' --exclude='.github/' --exclude='.gitignore' --exclude='README.md' \
-            --exclude='actions-runner*/' --exclude='_work/' --exclude='.runner*' \
-            "$GITHUB_WORKSPACE/" "$DEPLOY_DIR/"
-          echo "Deployed commit $GITHUB_SHA to $DEPLOY_DIR"
+    - name: Clone repository
+      run: |
+        set -e
+        WORK="$GITHUB_WORKSPACE"
+        # cd out of $WORK before deleting it — the runner cd'd into
+        # this directory before running the script, and `rm -rf` on
+        # the current working directory leaves the shell in a
+        # phantom-dir state where every subsequent command fails
+        # with "Unable to read current working directory".
+        cd /tmp
+        rm -rf "$WORK"
+        git clone --depth 1 --branch "${GITHUB_REF_NAME:-main}" \
+          "https://github.com/$GITHUB_REPOSITORY.git" "$WORK"
